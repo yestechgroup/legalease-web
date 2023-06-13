@@ -2,7 +2,9 @@
 import Container from "@components/container.astro";
 import Link from "@components/ui/link.astro";
 import Dropdown from "./dropdown.astro";
+import logo from "assets/logo.svg";
 import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
+import { Picture } from "@astrojs/image/components";
 
 const menuitems = [
   {
@@ -37,10 +39,19 @@ const menuitems = [
 <Container>
   <header class="flex flex-col lg:flex-row justify-between items-center my-5">
     <Astronav>
-      <div class="flex w-full lg:w-auto items-center justify-between">
-        <a href="/" class="text-lg"
-          ><span class="font-bold text-slate-800">Astro</span><span
-            class="text-slate-500">ship</span
+      <div class="flex w-full lg:w-auto  p-3 items-center justify-between">
+        <Picture
+      src={logo}
+      alt="LegalEase | Get Legal. Easily!"
+      widths={[32, 400, 600]}
+      aspectRatio="4:4"
+      sizes="(max-width: 64px) 100vw, 64px"
+      loading="eager"
+      format="avif"
+    />
+        <a href="/" class="text-lg p-3"
+          ><span class="font-bold text-slate-800">Legal</span><span
+            class="text-slate-500">Ease</span
           >
         </a>
         <div class="block lg:hidden">
@@ -79,11 +90,6 @@ const menuitems = [
         </div>
       </MenuItems>
     </Astronav>
-    <div>
-      <div class="hidden lg:flex items-center gap-4">
-        <a href="#">Log in</a>
-        <Link href="#" size="md">Sign up</Link>
-      </div>
-    </div>
+  
   </header>
 </Container>

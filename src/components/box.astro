@@ -1,0 +1,70 @@
+---
+
+interface Props {
+    box_colors: [string, 
+        { DEFAULT: string; muted: string; shifted: string; } ],
+    color_name: string,
+}
+
+
+let props  = Astro.props;
+
+const foregroundColor = "rgb(221 243 228)";
+const backgroundColor = props.color_name;
+
+
+
+// box_colors.box_colors[0]
+
+
+let mutedColor = ""
+let shiftedColor = ""
+
+try {
+    // console.log(Object.keys(props.box_colors))
+    // console.log(Object.values(props.box_colors)[1].DEFAULT)
+    mutedColor = props.box_colors[1].muted as string;
+    shiftedColor = props.box_colors[1].shifted as string;
+} catch (error) {
+    // console.error(error)
+}
+
+---
+<style define:vars={{ foregroundColor, backgroundColor, mutedColor, shiftedColor }}>
+  .box {
+    background-color: var(--backgroundColor);
+    color: var(--foregroundColor);
+  }
+
+  .muted {
+    background-color: var(--mutedColor);
+    color: var(--foregroundColor);
+  }
+
+  .shifted {
+    background-color: var(--shiftedColor);
+    color: var(--foregroundColor);
+  }
+</style>
+
+
+
+
+<div class="grid grid-cols-3 grid-rows-1 gap-1">
+    <div >
+        <div class="box-border h-32 w-32 p-1 border-4 box">
+            <!-- ... -->
+        </div>
+    </div>
+    <div >
+        <div class="box-border h-32 w-32 p-4 border-4 shifted">
+            <!-- ... -->
+        </div>
+    </div>
+    <div >
+        <div class="box-border h-32 w-32 p-4 border-4 muted">
+            <!-- ... -->
+        </div>
+    </div>
+</div>
+    

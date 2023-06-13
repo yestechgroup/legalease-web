@@ -3,6 +3,45 @@ import { Picture } from "@astrojs/image/components";
 import heroImage from "assets/hero.png";
 import Link from "@components/ui/link.astro";
 import { Icon } from "astro-icon";
+
+const valueProp = "Marketing website done with Astro";
+
+const valueProps = [
+  {
+    value_prop: "Streamline Your Legal Journey",
+    value_description:
+      "LegalEase prepares you for working with a law firm by asking the right questions, guiding you on required documents, and providing a comprehensive information package. Save time and money by being well-prepared from the start.",
+  },
+
+  {
+    value_prop: "Time-Saving Legal Preparation",
+    value_description:
+      "Don't waste precious hours on back-and-forth discussions with a law firm. LegalEase streamlines the process by collecting the necessary information and materials upfront, ensuring a smooth and efficient collaboration.",
+  },
+
+  {
+    value_prop: "Maximize Efficiency with LegalEase",
+    value_description:
+      "By utilizing LegalEase's thorough preparation process, you can eliminate unnecessary delays and backlogs. Our platform ensures that you have all the required information ready, allowing your chosen law firm to hit the ground running.",
+  },
+  {
+    value_prop: "Minimize Costly Law Firm Interactions",
+    value_description:
+      "Reduce your expenses by leveraging LegalEase's preparation services. By providing comprehensive guidance and document preparation, we help you minimize billable hours spent on administrative tasks, saving you money in the long run.",
+  },
+
+  {
+    value_prop: "Empower Yourself for Legal Success",
+    value_description:
+      "LegalEase empowers you to take control of your legal journey. By equipping you with the necessary information and materials, we enable you to work more effectively with your chosen law firm, achieving better outcomes while keeping costs in check.",
+  },
+
+  {
+    value_prop: "Prepare Like a Pro with LegalEase",
+    value_description:
+      "Stand out as a well-prepared client with LegalEase's guidance. Impress your chosen law firm by providing them with all the essential information and documents they need upfront, demonstrating your professionalism and commitment to a smooth legal process.",
+  },
+];
 ---
 
 <main
@@ -21,12 +60,10 @@ import { Icon } from "astro-icon";
   <div>
     <h1
       class="text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter">
-      Marketing website done with Astro
+      {valueProps[0].value_prop}
     </h1>
     <p class="text-lg mt-4 text-slate-600 max-w-xl">
-      Astroship is a starter template for startups, marketing websites & landing
-      pages.<wbr /> Built with Astro.build and TailwindCSS. You can quickly create
-      any website with this starter.
+      {valueProps[0].value_description}<wbr /> 
     </p>
     <div class="mt-6 flex flex-col sm:flex-row gap-3">
       <Link

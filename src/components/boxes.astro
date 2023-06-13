@@ -1,0 +1,72 @@
+---
+import Box from "@components/box.astro";
+
+const colors = {
+  red: {
+    DEFAULT: '#FF0000',
+    muted: '#FF6666',
+    shifted: '#D40000',
+  },
+  orange: {
+    DEFAULT: '#FFA500',
+    muted: '#FF9966',
+    shifted: '#D46600',
+  },
+  yellow: {
+    DEFAULT: '#FFFF00',
+    muted: '#FFE466',
+    shifted: '#DCD400',
+  },
+  green: {
+    DEFAULT: '#00FF00',
+    muted: '#66FF66',
+    shifted: '#00D400',
+  },
+  blue: {
+    DEFAULT: '#0000FF',
+    muted: '#6666FF',
+    shifted: '#0000D4',
+  },
+  indigo: {
+    DEFAULT: '#4B0082',
+    muted: '#660066',
+    shifted: '#420042',
+  },
+  violet: {
+    DEFAULT: '#9900FF',
+    muted: '#9966FF',
+    shifted: '#6600D4',
+  },
+  white: {
+    DEFAULT: '#FFFFFF',
+    muted: '#EEEEEE',
+    shifted: '#DDDDDD',
+  },
+  black: {
+    DEFAULT: '#000000',
+    muted: '#666666',
+    shifted: '#424242',
+  },
+};
+
+const colorsArray = Object.entries(colors);
+// for (const [colorName, colorShades] of colorsArray) {
+//   console.log(colorName);
+
+//   for (const shadeName in colorShades) {
+//     if (Object.hasOwnProperty.call(colorShades, shadeName)) {
+//       console.log(shadeName, colorShades[shadeName]);
+//     }
+//   }
+// }
+
+---
+
+<ul>
+    {colorsArray.map((colorName, colorShades) => (
+        
+      <li>{colorName[0]}</li>
+        <li>{colorName[colorShades[0]]} </li>
+      <Box box_colors={colorName} color_name={colorName[0]} />
+    ))}
+  </ul>
