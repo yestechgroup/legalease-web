@@ -20,8 +20,9 @@ const url = new URL(Astro.request.url);
 const decoded = decodeURIComponent(url.toString());
 
 const emailMatch = url.toString().match(/email=([^&]+)/);
-console.log("emailMatch: " + emailMatch);
-
+if (emailMatch){
+    console.log("emailMatch: " + get_param_value(emailMatch.toString(), "email"));
+}
 const cidMatch = decoded.match(/cid=([^&]+)/);
 
 // Check if "email" and "message" parameters are present
@@ -49,7 +50,9 @@ if (emailMatch && cidMatch) {
 }
 
 function get_param_value(param: string, name: string) {
-    return param.toString().replace(`${name}=`, "").split(",")[0];
+    return param.toString()
+    .replace('%20', "+")
+    .replace(`${name}=`, "").split(",")[0];
 }
 ---
 
