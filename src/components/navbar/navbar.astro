@@ -2,38 +2,40 @@
 import Container from "@components/container.astro";
 import Link from "@components/ui/link.astro";
 import Dropdown from "./dropdown.astro";
-import logo from "assets/logo.svg";
+import logo from "assets/LegalEase_logo.svg";
 import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
 import { Picture } from "@astrojs/image/components";
 
-const menuitems = [
-  {
-    title: "Features",
-    path: "#",
-    children: [
-      { title: "Action", path: "/" },
-      { title: "Another action", path: "#" },
-      { title: "Dropdown Submenu", path: "#" },
-      { title: "404 Page", path: "/404" },
-    ],
-  },
-  {
-    title: "Pricing",
-    path: "/pricing",
-  },
-  {
-    title: "About",
-    path: "/about",
-  },
-  {
-    title: "Blog",
-    path: "/blog",
-  },
-  {
-    title: "Contact",
-    path: "/contact",
-  },
-];
+const menuitems = []
+
+// const menuitems = [
+//   {
+//     title: "Features",
+//     path: "#",
+//     children: [
+//       { title: "Action", path: "/" },
+//       { title: "Another action", path: "#" },
+//       { title: "Dropdown Submenu", path: "#" },
+//       { title: "404 Page", path: "/404" },
+//     ],
+//   },
+//   {
+//     title: "Pricing",
+//     path: "/pricing",
+//   },
+//   {
+//     title: "About",
+//     path: "/about",
+//   },
+//   {
+//     title: "Blog",
+//     path: "/blog",
+//   },
+//   {
+//     title: "Contact",
+//     path: "/contact",
+//   },
+// ];
 ---
 
 <Container>
@@ -43,17 +45,13 @@ const menuitems = [
         <Picture
       src={logo}
       alt="LegalEase | Get Legal. Easily!"
-      widths={[32, 400, 600]}
-      aspectRatio="4:4"
-      sizes="(max-width: 64px) 100vw, 64px"
+      widths={[184, 400, 600]},
+      aspectRatio="186:54"
+      sizes="(max-width: 184px) 100vw, 190px"
       loading="eager"
       format="avif"
     />
-        <a href="/" class="text-lg p-3"
-          ><span class="font-bold text-slate-800">Legal</span><span
-            class="text-slate-500">Ease</span
-          >
-        </a>
+        
         <div class="block lg:hidden">
           <MenuIcon class="w-4 h-4 text-gray-800" />
         </div>

@@ -7,15 +7,42 @@ import Hero from "@components/hero.astro";
 import Logos from "@components/logos.astro";
 import Box from "@components/box.astro";
 import Boxes from "@components/boxes.astro";
+import Feedback from "@components/FeedbackForm.svelte";
 import Layout from "@layouts/Layout.astro";
+export const prerender = true;
+
+// console.log("Astro.request", Astro.request.url);
+
+// const url = new URL(Astro.request.url);
+// const params = new URLSearchParams(url.search);
+
+// const queryParams = {};
+
+// for (const [param, value] of params.entries()) {
+//   queryParams[param] = value;
+// }
+
+// Check if "email" and "message" parameters are present
+// if ('email' in queryParams && 'message' in queryParams) {
+//   const email = queryParams['email'];
+//   const message = queryParams['message'];
+
+//   console.log('Email:', email);
+//   console.log('Message:', message);
+// } else {
+//   console.log('Email or Message parameters are missing.');
+// }
+
+
 ---
 
 <Layout title="">
   <Container>
-
+ 
+    <Feedback client:load />
     <Hero />
     <Features />
-    <Logos />
-    <Cta />
+    
+    
   </Container>
 </Layout>
