@@ -20,6 +20,7 @@ const url = new URL(Astro.request.url);
 const decoded = decodeURIComponent(url.toString());
 
 const emailMatch = decoded.match(/email=([^&]+)/);
+console.log("emailMatch: " + emailMatch);
 
 const cidMatch = decoded.match(/cid=([^&]+)/);
 
