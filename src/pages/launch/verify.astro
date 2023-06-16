@@ -8,7 +8,7 @@ import { supabase } from "@utils/supabase";
 
 // Filter team entries with 'draft: false' & date before current date
 const publishedTeamMembers = await getCollection("team", ({ data }) => {
-  return !data.draft && data.publishDate < new Date();
+    return !data.draft && data.publishDate < new Date();
 });
 
 const url = new URL(Astro.request.url);
@@ -19,78 +19,86 @@ const url = new URL(Astro.request.url);
 
 const decoded = decodeURIComponent(url.toString());
 
-const emailMatch = decoded.match(/email=([^&]+)/)?.toString().replace('email=', '');
-const cidMatch = decoded.match(/cid=([^&]+)/)?.toString().replace('cid=', '');
+const emailMatch = decoded.match(/email=([^&]+)/);
+
+const cidMatch = decoded.match(/cid=([^&]+)/);
 
 // Check if "email" and "message" parameters are present
 if (emailMatch && cidMatch) {
-//   const email = queryParams['email'];
-//   const cid = queryParams['cid'];
-  const listid = 2;
+    //   const email = queryParams['email'];
+    //   const cid = queryParams['cid'];
+    const listid = 2;
 
-  console.log('email: ' + emailMatch);
-  console.log('cid: ' + cidMatch);
+    const cid = get_param_value(cidMatch.toString(), "cid");
+    const email = get_param_value(emailMatch.toString(), "email");
 
-    let { data, error } = await supabase
-    .rpc('set_subscriber_confirmed', {
-        cid: cidMatch, 
-        email_address: emailMatch, 
-        listid: listid
-    })
+    console.log("email: " + email);
+    console.log("cid: " + cid);
 
-    if (error) console.error(error)
-    else console.log(data)
+    let { data, error } = await supabase.rpc("set_subscriber_confirmed", {
+        cid: cid,
+        email_address: email,
+        listid: listid,
+    });
+
+    if (error) console.error(error);
+    else console.log(data);
 } else {
-  console.log('Email or cid parameters are missing.');
+    console.log("Email or cid parameters are missing.");
+}
+
+function get_param_value(param: string, name: string) {
+    return param.toString().replace(`${name}=`, "").split(",")[0];
 }
 ---
 
 <Layout title="About">
-  <Container>
-    <Sectionhead>
-      <Fragment slot="title">Verified!</Fragment>
-      <Fragment slot="desc">Thanks for your interest!</Fragment>
-    </Sectionhead>
+    <Container>
+        <Sectionhead>
+            <Fragment slot="title">Verified!</Fragment>
+            <Fragment slot="desc">Thanks for your interest!</Fragment>
+        </Sectionhead>
 
-    <div class="flex flex-col gap-3 mx-auto max-w-4xl mt-16">
-      <h2 class="font-bold text-3xl text-gray-800">
-        We'll be sure to keep you updated on our progress.
-      </h2>
-      <p class="text-lg leading-relaxed text-slate-500">
-        We're a multi-cultural team from around the world! We come from diverse
-        backgrounds, bringing different personalities, experiences and skills to
-        the job. This is what makes our team so special.
-      </p>
-    </div>
-    <div class="grid md:grid-cols-3 gap-10 mx-auto max-w-4xl mt-12">
-      {
-        publishedTeamMembers.map((teamMemberEntry) => (
-          <div class="group">
-            <div class="w-full aspect-square">
-              <Picture
-                src={teamMemberEntry.data.avatar.src}
-                alt={teamMemberEntry.data.avatar.alt}
-                sizes="(max-width: 800px) 100vw, 400px"
-                widths={[200, 400]}
-                aspectRatio="1:1"
-                background="#ffffff"
-                fit="cover"
-                position="center"
-                class="w-full rounded-md rounded transition group-hover:-translate-y-1 group-hover:shadow-xl"
-              />
-            </div>
+        <div class="flex flex-col gap-3 mx-auto max-w-4xl mt-16">
+            <h2 class="font-bold text-3xl text-gray-800">
+                We'll be sure to keep you updated on our progress.
+            </h2>
+            <p class="text-lg leading-relaxed text-slate-500">
+                We're a multi-cultural team from around the world! We come from
+                diverse backgrounds, bringing different personalities,
+                experiences and skills to the job. This is what makes our team
+                so special.
+            </p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-10 mx-auto max-w-4xl mt-12">
+            {
+                publishedTeamMembers.map((teamMemberEntry) => (
+                    <div class="group">
+                        <div class="w-full aspect-square">
+                            <Picture
+                                src={teamMemberEntry.data.avatar.src}
+                                alt={teamMemberEntry.data.avatar.alt}
+                                sizes="(max-width: 800px) 100vw, 400px"
+                                widths={[200, 400]}
+                                aspectRatio="1:1"
+                                background="#ffffff"
+                                fit="cover"
+                                position="center"
+                                class="w-full rounded-md rounded transition group-hover:-translate-y-1 group-hover:shadow-xl"
+                            />
+                        </div>
 
-            <div class="mt-4 text-center">
-              <h2 class="text-lg text-gray-800">
-                {teamMemberEntry.data.name}
-              </h2>
-              <h3 class="text-sm text-slate-500">
-                {teamMemberEntry.data.title}
-              </h3>
-            </div>
-          </div>
-        ))
-      }
-    </div>
-  </Container>
+                        <div class="mt-4 text-center">
+                            <h2 class="text-lg text-gray-800">
+                                {teamMemberEntry.data.name}
+                            </h2>
+                            <h3 class="text-sm text-slate-500">
+                                {teamMemberEntry.data.title}
+                            </h3>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </Container>
 </Layout>
