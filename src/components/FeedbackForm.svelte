@@ -39,11 +39,11 @@
         class="mx-auto max-w-2xl text-center text-3xl font-bold tracking-tight text-white sm:text-4xl">
         Get notified when we’re launching.
       </h2>
-      <p
+      <!-- <p
         class="mx-auto mt-2 max-w-xl text-center text-lg leading-8 text-gray-300">
         Reprehenderit ad esse et non officia in nulla. Id proident tempor
         incididunt nostrud nulla et culpa.
-      </p>
+      </p> -->
       <form class="mx-auto mt-10 flex max-w-md gap-x-4" on:submit={submit}>
         {#if responseStatus === 200}
           <div class="mt-16 text-center">
