@@ -22,36 +22,19 @@ const decoded = decodeURIComponent(url.toString());
 const emailMatch = decoded.match(/email=([^&]+)/);
 const cidMatch = decoded.match(/cid=([^&]+)/);
 
-const email = emailMatch ? emailMatch[1] : null;
-const cid = cidMatch ? cidMatch[1] : null;
-
-console.log('Email:', email);
-console.log('CID:', cid);
-
-
-console.log('Email:', email);
-console.log('CID:', cid);
-
-// const queryParams = {};
-
-// for (const [param, value] of params.entries()) {
-
-//   queryParams[param] = value;
-// }
-
 // Check if "email" and "message" parameters are present
-if (email && cid) {
+if (emailMatch && cidMatch) {
 //   const email = queryParams['email'];
 //   const cid = queryParams['cid'];
   const listid = 2;
 
-  console.log('email: ' + email);
-  console.log('cid: ' + cid);
+  console.log('email: ' + emailMatch);
+  console.log('cid: ' + cidMatch);
 
     let { data, error } = await supabase
     .rpc('set_subscriber_confirmed', {
-        cid: cid, 
-        email_address: email, 
+        cid: cidMatch, 
+        email_address: emailMatch, 
         listid: listid
     })
 
