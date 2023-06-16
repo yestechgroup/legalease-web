@@ -19,8 +19,8 @@ const url = new URL(Astro.request.url);
 
 const decoded = decodeURIComponent(url.toString());
 
-const emailMatch = decoded.match(/email=([^&]+)/);
-const cidMatch = decoded.match(/cid=([^&]+)/);
+const emailMatch = decoded.match(/email=([^&]+)/)?.toString().replace('email=', '');
+const cidMatch = decoded.match(/cid=([^&]+)/)?.toString().replace('cid=', '');
 
 // Check if "email" and "message" parameters are present
 if (emailMatch && cidMatch) {
