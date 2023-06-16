@@ -17,7 +17,7 @@ export const post: APIRoute = async ({ request }) => {
     })
 
     if (error) console.error(error)
-    else console.log(data)
+    else console.log(subscriber)
 
   const isValidEmail = (email: string) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
